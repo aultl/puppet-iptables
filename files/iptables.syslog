@@ -1,0 +1,3 @@
+# Log iptable rules to iptables log
+if $syslogfacility-text == 'kern' and $msg startswith 'IPT ' then /var/log/iptables
+& ~

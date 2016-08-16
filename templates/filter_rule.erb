@@ -1,0 +1,9 @@
+<% if !@comment.empty? -%>
+<%= '# ' + @comment %>
+<% end -%>
+<% if @protocol == 'both' -%>
+-A <%= @chain %> -m state --state <%= Array(@state.upcase).join(',') %> -p tcp --dport <%= @dport %> -j <%= @action.upcase %>
+-A <%= @chain %> -m state --state <%= Array(@state.upcase).join(',') %> -p udp --dport <%= @dport %> -j <%= @action.upcase %>
+<% else -%>
+-A <%= @chain %> -m state --state <%= Array(@state.upcase).join(',') %> -p <%= @protocol %> --dport <%= @dport %> -j <%= @action.upcase %>
+<% end -%>
